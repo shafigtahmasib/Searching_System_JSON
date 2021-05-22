@@ -1,0 +1,22 @@
+[ {
+  "id" : 1,
+  "name" : "s",
+  "surname" : "t",
+  "fatherName" : "m",
+  "email" : "sss",
+  "phoneNum" : "46546"
+}, {
+  "id" : 2,
+  "name" : "ssdfs",
+  "surname" : "erthwert",
+  "fatherName" : "merhtehr",
+  "email" : "sserthes",
+  "phoneNum" : "46545675676"
+}, {
+  "id" : 3,
+  "name" : "wrethe45yhwr",
+  "surname" : "erhteth",
+  "fatherName" : "erthetrm",
+  "email" : "sserhterths",
+  "phoneNum" : "465675675546"
+} ]
