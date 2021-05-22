@@ -45,7 +45,7 @@ public class Main implements ICRUD {
 
     void emailChecker(String email){
         Scanner scan =  new Scanner(System.in);
-        while (!email.matches("^\\S+@\\S+$")) {
+        while (!email.matches("[A-Za-z[.]_0-9]+[@][A-Za-z[.]_0-9]+[.][a-z]{2,4}")) {
             System.out.println("Enter correct email: ");
             email = scan.nextLine();
         }
@@ -173,39 +173,46 @@ public class Main implements ICRUD {
         String fatherName = scan.nextLine();
         student.setFatherName(fatherName);
         System.out.println("Email of student: ");
-        String email = scan.nextLine();
-        emailChecker(email);
-        for(Student x: students){
-            if(x.getEmail().equals(email)){
-                System.out.println("Email exits...");
-                System.exit(0);
+        hm:
+        while(true) {
+            String email = scan.nextLine();
+            for(Student x: students) {
+                if (x.getEmail().equals(email)) {
+                    System.out.println("Email exits, enter again: \n");
+                    continue hm;
+                }
             }
-            student.setEmail(email);
+            if(email.matches("[A-Za-z[.]_0-9]+[@][A-Za-z[.]_0-9]+[.][a-z]{2,4}")){
+                student.setEmail(email);
+                break;
+            }
+            else System.out.println("Enter correct mail");
         }
 
         System.out.println("Phone number of student: ");
-        String phoneNum = scan.nextLine();
 
-        while (!phoneNum.matches("\\+994(50|55|51|70|77)[0-9]{7}")) {
-            System.out.println("Enter correct phone number: ");
-            phoneNum = scan.nextLine();
-        }
-        for(Student x: students){
-            if(x.getPhoneNum().equals(phoneNum)){
-                System.out.println("Phone number exits...");
-                System.exit(0);
+        hm:
+        while(true) {
+            String phoneNum = scan.nextLine();
+            for (Student x : students) {
+                if (x.getPhoneNum().equals(phoneNum)) {
+                    System.out.println("Phone number exists, enter again: \n");
+                    continue hm;
+                }
             }
-            student.setPhoneNum(phoneNum);
+                if (phoneNum.matches("\\+994(50|55|51|70|77)[0-9]{7}")) {
+                    student.setPhoneNum(phoneNum);
+                    break;
+                }
+                else System.out.println("Enter correct form \n");
         }
 
         students.add(student);
-
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(new File("jj.json"), students);
-        //String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(students);
-        //JSONArray jsonArr = new JSONArray(jsonString);
         menu();
     }
+
 
     @Override
     public void get() throws IOException {
